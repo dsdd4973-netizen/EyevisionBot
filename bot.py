@@ -1,6 +1,4 @@
 
-@Doztxx
-4 seconds ago
 import discord
 import os
 from discord.ext import commands
