@@ -6,7 +6,7 @@ intents = discord.Intents.default()
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-
+---------- PAYMENT BUTTONS ----------
 class PaymentView(discord.ui.View):
 def init(self):
 super().init(timeout=None)
@@ -38,7 +38,7 @@ async def paid(self, interaction: discord.Interaction, button: discord.ui.Button
         "Please upload a screenshot of your payment proof in this ticket so staff can verify it.",
         ephemeral=True
     )
-
+---------- SLASH COMMAND ----------
 @bot.tree.command(name="payments", description="Show Eyevision payment methods")
 async def payments(interaction: discord.Interaction):
 
@@ -74,7 +74,7 @@ await interaction.response.send_message(
     embed=embed,
     view=PaymentView()
 )
-
+---------- SYNC + READY ----------
 @bot.event
 async def on_ready():
 try:
@@ -84,5 +84,6 @@ print(f"Synced {len(synced)} command(s)")
 except Exception as e:
 print(f"Sync error: {e}")
 
-
+---------- RUN BOT ----------
 bot.run(os.getenv("DISCORD_TOKEN"))
+
