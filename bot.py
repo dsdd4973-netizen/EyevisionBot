@@ -62,4 +62,4 @@ async def payments(interaction: discord.Interaction):
 
     await interaction.response.send_message(embed=embed, view=PaymentView())
 
-bot.run("YOUR_ACTUAL_TOKEN_HERE")
+bot.run(os.gatenv("DISCORD_TOKEN")
