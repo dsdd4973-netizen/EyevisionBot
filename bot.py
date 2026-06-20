@@ -6,7 +6,6 @@ intents = discord.Intents.default()
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
----------- PAYMENT BUTTONS ----------
 class PaymentView(discord.ui.View):
 def init(self):
 super().init(timeout=None)
