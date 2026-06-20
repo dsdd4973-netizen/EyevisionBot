@@ -7,8 +7,8 @@ intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 class PaymentView(discord.ui.View):
-def init(self):
-super().init(timeout=None)
+    def init(self):
+        super().init(timeout=None)
 
 @discord.ui.button(label="💵 Cash App", style=discord.ButtonStyle.green)
 async def cashapp(self, interaction: discord.Interaction, button: discord.ui.Button):
