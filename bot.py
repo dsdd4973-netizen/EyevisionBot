@@ -11,79 +11,52 @@ class PaymentView(discord.ui.View):
 def init(self):
 super().init(timeout=None)
 
-@discord.ui.button(label="💵 Open Cash App", style=discord.ButtonStyle.green)
+@discord.ui.button(label="💵 Cash App", style=discord.ButtonStyle.green)
 async def cashapp(self, interaction: discord.Interaction, button: discord.ui.Button):
     await interaction.response.send_message(
-        "Cash App: https://cash.app/$jamarialittle0\nNOTE: FOOD",
+        "https://cash.app/$jamarialittle0",
         ephemeral=True
     )
 
-@discord.ui.button(label="🅿️ Open PayPal", style=discord.ButtonStyle.blurple)
+@discord.ui.button(label="🅿️ PayPal", style=discord.ButtonStyle.blurple)
 async def paypal(self, interaction: discord.Interaction, button: discord.ui.Button):
     await interaction.response.send_message(
-        "PayPal: https://paypal.me/stagesteal\nNOTE: FRIENDS AND FAMILY",
+        "https://paypal.me/stagesteal",
         ephemeral=True
     )
 
-@discord.ui.button(label="🏦 View Chime", style=discord.ButtonStyle.gray)
+@discord.ui.button(label="🏦 Chime", style=discord.ButtonStyle.gray)
 async def chime(self, interaction: discord.Interaction, button: discord.ui.Button):
     await interaction.response.send_message(
-        "Chime: $Questishim",
+        "$Questishim",
         ephemeral=True
     )
 
 @discord.ui.button(label="✅ I've Paid", style=discord.ButtonStyle.red)
 async def paid(self, interaction: discord.Interaction, button: discord.ui.Button):
     await interaction.response.send_message(
-        "Please upload a screenshot of your payment proof in this ticket so staff can verify it.",
+        "Please upload payment proof in the ticket.",
         ephemeral=True
     )
----------- SLASH COMMAND ----------
 @bot.tree.command(name="payments", description="Show Eyevision payment methods")
 async def payments(interaction: discord.Interaction):
 
 embed = discord.Embed(
     title="🔴 Eyevision • Payment Methods",
-    description="Choose a payment method below and follow the notes provided.",
     color=discord.Color.red()
 )
 
-embed.add_field(
-    name="💵 Cash App",
-    value="$jamarialittle0\n**NOTE:** FOOD",
-    inline=False
-)
-
-embed.add_field(
-    name="🅿️ PayPal",
-    value="https://paypal.me/stagesteal\n**NOTE:** FRIENDS AND FAMILY",
-    inline=False
-)
-
-embed.add_field(
-    name="🏦 Chime",
-    value="$Questishim",
-    inline=False
-)
-
-embed.set_footer(
-    text="After paying, click 'I've Paid' and upload your proof in this ticket."
-)
+embed.add_field(name="💵 Cash App", value="$jamarialittle0\nNOTE: FOOD", inline=False)
+embed.add_field(name="🅿️ PayPal", value="https://paypal.me/stagesteal\nNOTE: FRIENDS AND FAMILY", inline=False)
+embed.add_field(name="🏦 Chime", value="$Questishim", inline=False)
 
 await interaction.response.send_message(
     embed=embed,
     view=PaymentView()
 )
----------- SYNC + READY ----------
 @bot.event
 async def on_ready():
-try:
-synced = await bot.tree.sync()
+await bot.tree.sync()
 print(f"Logged in as {bot.user}")
-print(f"Synced {len(synced)} command(s)")
-except Exception as e:
-print(f"Sync error: {e}")
 
----------- RUN BOT ----------
 bot.run(os.getenv("DISCORD_TOKEN"))
-
